@@ -1,0 +1,30 @@
+<div
+  class="modal fade"
+  id="deleteMusicModal"
+  tabindex="-1"
+  aria-labelledby="deleteMusicModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <img [src]="fileIcon" class="img-fluid mb-3" alt="Background Image" />
+      <div class="text">
+        <h5 class="modal-title" id="deleteMusicModalLabel">{{ headLine }}</h5>
+        <p>{{ content }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">
+          إلغاء
+        </button>
+        <button
+          (click)="onClickOk.emit()"
+          type="button"
+          class="btn btn-delete"
+          data-bs-dismiss="modal"
+        >
+          حذف
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

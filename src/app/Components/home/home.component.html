@@ -1,0 +1,118 @@
+<div class="container">
+  <div data-bs-target="#adminProfile" data-bs-toggle="modal" class="admin-box">
+    <div class="text">
+      <div class="admin-name">{{ adminName }}</div>
+      <p>ادمن</p>
+    </div>
+    <div class="admin-img"></div>
+  </div>
+  <div class="main-layout">
+    <div class="left-section justify-content-center">
+      <div class="section-title">ارفع الملفات الصوتية هنا</div>
+
+      <!-- Display when there are no music files -->
+      <div class="top music-label" *ngIf="AllMusicFiles.length === 0">
+        <label for="audio-upload" class="upload-label">
+          <img src="../../../assets/imgs/music.svg" alt="" />
+        </label>
+      </div>
+      <input type="file" id="audio-upload" class="hidden-input" (change)="handleAudioFileInput($event)" />
+      <!-- Display when there are music files -->
+      <div class="top" *ngIf="AllMusicFiles.length > 0">
+        <div class="eraseAll">
+          <img data-bs-toggle="modal" data-bs-target="#deleteFile" src="../../../assets/imgs/Earse-All-Music.svg"
+            alt="" />
+          <app-delete-file (onClickOk)="eraseAllMusic()"></app-delete-file>
+          <app-delete-all-media></app-delete-all-media>
+        </div>
+        <div class="add-music">
+          <label for="audio-upload" class="upload-label">
+            <img src="../../../assets/imgs/add-music-Plus.svg" alt="" />
+          </label>
+        </div>
+        <span *ngIf="AllMusicFiles.length != 0" class="line-music-allMusic"></span>
+      </div>
+      <div class="allMusic-container" *ngIf="AllMusicFiles.length > 0">
+        <div class="box" *ngFor="let file of AllMusicFiles; let i = index">
+          <div class="left">
+            <div class="num">{{ i + 1 }}</div>
+            <div class="name-type">
+              <p class="music-type">mp3</p>
+              <p class="name" [title]="file.name">
+                {{ file.name | truncate : 20 }}
+              </p>
+            </div>
+          </div>
+          <div class="btns">
+            <img (click)="openDeleteModal(i)" src="../../../assets/imgs/delete.svg" alt="" class="erase" />
+            <label [for]="'audio-swap' + i">
+              <img src="../../../assets/imgs/swap.svg" alt="" class="swap" />
+            </label>
+            <input type="file" [id]="'audio-swap' + i" class="hidden-input" (change)="swapAudioFileInput($event, i)" />
+          </div>
+        </div>
+      </div>
+      <app-delete-file-in-home [fileIndexToDelete]="fileIndexToDelete"
+        (onClickOk)="deleteMusicFile($event)"></app-delete-file-in-home>
+    </div>
+
+    <div class="right-section" [ngStyle]="{
+        'background-image': selectedImage ? 'url(' + selectedImage + ')' : ''
+      }" (click)="handleVideoUpload()">
+      <div class="section-title">ارفع صورة الفيديو هنا</div>
+      <label *ngIf="!selectedImage" for="video-upload" class="upload-label">
+        <img src="../../../assets/imgs/lets-icons_img-out-box-duotone.svg" alt="" class="add-img" />
+      </label>
+      <input *ngIf="!selectedImage" type="file" id="video-upload" class="hidden-input"
+        (change)="handleVideoFileInput($event)" />
+      <div *ngIf="selectedImage" class="img-helper">
+        <img data-bs-target="#deleteImage" data-bs-toggle="modal" src="../../../assets/imgs/delete-ima-Home.svg"
+          alt="" />
+        <label for="swapHomePhoto">
+          <img src="../../../assets/imgs/swap-img-Home.svg" alt="" />
+        </label>
+        <input type="file" id="swapHomePhoto" class="hidden-input" (change)="handleVideoFileInput($event)" />
+      </div>
+    </div>
+  </div>
+
+  <div class="add-video-btn">
+    <img src="../../../assets/imgs/btn.svg" alt="" />
+  </div>
+</div>
+
+<!-- Delete song MOdel -->
+
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteMusicModal">
+  Open Delete Music Modal
+</button> -->
+
+<!-- DeleteAll song MOdel -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteAllMediaModal">
+     Open Delete Music Modal
+</button> -->
+
+<!-- Delete file MOdel -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteFile">
+     Open Delete Music Modal
+</button> -->
+
+<!-- Delete img MOdel -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteImage">
+     Open Delete Music Modal
+</button> -->
+
+<!-- adminProfile  MOdel -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#adminProfile">
+     Open Delete Music Modal
+</button> -->
+
+<!-- Audio Settings  MOdel -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#audioSettings">
+  Open Delete Music Modal
+</button> -->
+
+<!-- ModalComponent -->
+<app-delete-photos (onClickOk)="selectedImage = null"></app-delete-photos>
+<app-admin-profile [adminName]="adminName" (onChangingName)="adminName = $event"></app-admin-profile>
+<app-audio-settings (sendTimingSettings)="setVideoSettings($event)"></app-audio-settings>

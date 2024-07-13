@@ -1,0 +1,23 @@
+/* app.component.css */
+.container-home {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  margin: 0 !important;
+  padding: 0 !important;
+  flex-direction: row-reverse;
+}
+
+.sidebar {
+  width: 20%;
+  background-color: #140c18;
+  height: 100%;
+}
+
+.home {
+  width: 80%;
+  background: url("../assets/imgs/Rectangle4.svg") no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  border-right: 1px solid #af76da85;
+}

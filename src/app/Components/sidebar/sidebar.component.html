@@ -1,0 +1,114 @@
+<div class="container">
+  <div class="top">
+    <div class="right">
+      <img src="../../../assets/imgs/islam1(Traced).svg" alt="" />
+      <div class="text">
+        <h5>الذكر الحكيم</h5>
+        <p>لخدمة الإسلام والمسلمين</p>
+      </div>
+    </div>
+    <div class="left">
+      <img data-bs-target="#audioSettings" data-bs-toggle="modal" src="../../../assets/imgs/settings.svg" alt="" />
+    </div>
+  </div>
+
+  <div class="control-panel">
+    <img src="../../../assets/imgs/layersIcon.svg" alt="" />
+    <p>لوحة التحكم</p>
+  </div>
+  <div class="control-panel-icons">
+    <div class="icons">
+      <label for="addMusicInput" class="icon-label">
+        <img src="../../../assets/imgs/control-add-music.svg" alt="" />
+      </label>
+      <input id="addMusicInput" type="file" (change)="addAudio($event)" class="hidden-input" />
+
+      <label for="addImageInput" class="icon-label">
+        <img src="../../../assets/imgs/control-add-img.svg" alt="" />
+      </label>
+      <input id="addImageInput" type="file" (change)="addPhoto($event)" class="hidden-input" />
+
+      <img (click)="addGroup()" src="../../../assets/imgs/add-folder.svg" alt="" />
+    </div>
+
+    <img [ngStyle]="{ display: groups.length + medias.length == 0 ? 'none' : '' }" data-bs-toggle="modal"
+      data-bs-target="#deleteAllMediaModal" src="../../../assets/imgs/Earse-controle.svg" alt="" />
+    <img *ngIf="groups.length + medias.length === 0" src="../../../assets/imgs/Earse-controle-inactive.svg" alt="" />
+    <app-delete-all-media (onClickOk)="deleteFoldarsAndMedias()"></app-delete-all-media>
+  </div>
+  <div class="All-groups">
+    <div class="group" *ngFor="let group of groups; index as folderIndex">
+      <app-delete-folder (onClickOk)="deleteFolder()"></app-delete-folder>
+      <div class="group-title">
+        <div class="left">
+          <img src="../../../assets/imgs/folderIcon.svg" alt="" />
+          <p class="title">{{ group.name }}</p>
+        </div>
+        <div class="right">
+          <label [for]="'addImageInTheFolderInput' + folderIndex" class="icon-label">
+            <img src="../../../assets/imgs/add-music-Plus.svg" alt="" />
+          </label>
+          <input [id]="'addImageInTheFolderInput' + folderIndex" type="file" (change)="
+              addMediaInTheFolder($event, folderIndex);
+              group.isFilesDisplayed = true
+            " class="hidden-input" />
+          <img (click)="setFolderToDeleteIndex(folderIndex)" data-bs-target="#deleteFile" data-bs-toggle="modal"
+            src="../../../assets/imgs/delete.svg" alt="" />
+          <img (click)="group.isFilesDisplayed = !group.isFilesDisplayed" [style.transform]="
+              group.isFilesDisplayed ? 'rotate(-90deg)' : 'rotate(0deg)'
+            " class="arrow" src="../../../assets/imgs/ArrowIcon.svg" alt="" />
+        </div>
+      </div>
+      <div class="allItems">
+        <div class="photoBox">
+          <div *ngIf="group.isFilesDisplayed">
+            <div class="box" *ngFor="let file of group.medias; index as fileIndex">
+              <div class="left">
+                <img [src]="file.iconSrc" alt="" />
+                <div class="name-type">
+                  <p class="name" [title]="file.File.name">
+                    {{ file.File.name }}
+                  </p>
+                </div>
+              </div>
+              <div class="btns">
+                <img data-bs-toggle="modal" data-bs-target="#deleteMusicModal" src="../../../assets/imgs/delete.svg"
+                  alt="" class="erase" (click)="
+                    setMediaToDeleteIndexInFolder(folderIndex, fileIndex)
+                  " />
+                <app-delete-file-modal [fileIcon]="fileIconToDelete"
+                  (onClickOk)="deleteMediaInFolder()"></app-delete-file-modal>
+                <label for="swapMediaInTheFolderInput">
+                  <img src="../../../assets/imgs/swap.svg" alt="" class="swap" (click)="
+                      setMediaToDeleteIndexInFolder(folderIndex, fileIndex)
+                    " />
+                </label>
+                <input id="swapMediaInTheFolderInput" type="file" (change)="
+                    swapMediaInTheFolder($event); group.isFilesDisplayed = true
+                  " class="hidden-input" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box" *ngFor="let media of medias; index as fileIndex">
+      <div class="left">
+        <img [src]="media.iconSrc" alt="" />
+        <div class="name-type">
+          <p class="name" [title]="media.File.name">{{ media.File.name }}</p>
+        </div>
+      </div>
+      <div class="btns">
+        <img data-bs-toggle="modal" data-bs-target="#deleteMusicModal" src="../../../assets/imgs/delete.svg" alt=""
+          class="erase" (click)="setMediaToDeleteIndex(fileIndex)" />
+        <app-delete-file-modal [fileIcon]="fileIconToDelete" (onClickOk)="deleteMedia()"></app-delete-file-modal>
+        <label for="swapMediaInThemedias">
+          <img (click)="setMediaToDeleteIndex(fileIndex)" src="../../../assets/imgs/swap.svg" alt="" class="swap" />
+        </label>
+        <input id="swapMediaInThemedias" type="file" (change)="swapMediaInTheMedias($event)" class="hidden-input" />
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,104 @@
+.modal-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background: linear-gradient(236.55deg, #6e329c 0%, #62288c 96.97%);
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  width: 110%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.layout {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  gap: 15px;
+}
+
+.layout .box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 20px;
+}
+
+.layout .box p {
+  color: white;
+  white-space: nowrap;
+}
+
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 150px;
+}
+
+.input-container input {
+  background: transparent;
+  border: 1px solid #ccc;
+  color: white;
+  border-radius: 5px;
+  padding-right: 30px;
+  text-align: center;
+  padding: 14px 5px;
+  width: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+}
+
+.input-container input::-webkit-outer-spin-button,
+.input-container input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.arrows {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.arrows img {
+  width: 100%;
+  cursor: pointer;
+}
+
+.btn-delete {
+  padding: 10px 55px;
+  background: #ff4444;
+  border-radius: 3px;
+  color: white;
+}
+
+.btn-cancel {
+  padding: 10px 55px;
+  background: #7d38b5;
+  border-radius: 3px;
+  color: white;
+}
+
+.second {
+  font-size: 10px;
+  font-weight: 300;
+}

@@ -1,0 +1,18 @@
+<!-- Modal Component HTML (delete-file-in-home.component.html) -->
+<div class="modal fade" id="deleteMusicInHomeModal" tabindex="-1" aria-labelledby="deleteMusicModalLabel"
+     aria-hidden="true">
+     <div class="modal-dialog">
+          <div class="modal-content">
+               <img src="../../../../assets/imgs/music-shap.svg" class="img-fluid mb-3" alt="Background Image">
+               <div class="text">
+                    <h5 class="modal-title" id="deleteMusicModalLabel">حذف الملف الصوتي</h5>
+                    <p>هل تريد حذف هذا الملف الصوتي؟</p>
+               </div>
+               <div class="modal-footer">
+                    <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">إلغاء</button>
+                    <button (click)="confirmDelete()" type="button" class="btn btn-delete"
+                         data-bs-dismiss="modal">حذف</button>
+               </div>
+          </div>
+     </div>
+</div>

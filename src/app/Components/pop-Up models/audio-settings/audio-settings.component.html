@@ -1,0 +1,34 @@
+<div class="modal fade" id="audioSettings" tabindex="-1" aria-labelledby="audioSettingsLabel" aria-hidden="true">
+     <div class="modal-dialog">
+          <div class="modal-content">
+               <div class="layout">
+                    <div class="box">
+                         <p>"المدة الزمنية بين تكرار الآية الواحدة <span class="second">"بالثانية</span></p>
+                         <div class="input-container">
+                              <input type="number" [(ngModel)]="timeInterval" />
+                              <div class="arrows">
+                                   <img src="../../../../assets/imgs/increment-arrow.svg"
+                                        (click)="increment('timeInterval')" alt="">
+                                   <img src="../../../../assets/imgs/decrement-arrow.svg"
+                                        (click)="decrement('timeInterval')" alt="">
+                              </div>
+                         </div>
+                         <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">رجوع</button>
+                    </div>
+                    <div class="box">
+                         <p>عدد تكرار كل أية</p>
+                         <div class="input-container">
+                              <input type="number" [(ngModel)]="repeatCount" />
+                              <div class="arrows">
+                                   <img src="../../../../assets/imgs/increment-arrow.svg"
+                                        (click)="increment('repeatCount')" alt="">
+                                   <img src="../../../../assets/imgs/decrement-arrow.svg"
+                                        (click)="decrement('repeatCount')" alt="">
+                              </div>
+                         </div>
+                         <button type="button" class="btn btn-delete" data-bs-dismiss="modal" (click)="sendTimingSettings.emit({timeInterval:timeInterval,repeatCount:repeatCount})">حفظ</button>
+                    </div>
+               </div>
+          </div>
+     </div>
+</div>

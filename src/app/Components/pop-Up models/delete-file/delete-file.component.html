@@ -1,0 +1,14 @@
+<div class="modal fade" id="deleteFile" tabindex="-1" aria-labelledby="deleteFileLabel" aria-hidden="true">
+     <div class="modal-dialog">
+          <div class="modal-content">
+               <img src="../../../../assets/imgs/delete-file.svg" class="img-fluid mb-3" alt="Background Image">
+               <div class="text">
+                    <h5 class="modal-title" id="deleteFileLabel">حذف ملفات لوحة التحكم</h5>
+                    <p>هل تريد حذف ملفات لوحة التحكم ؟
+                    <div class="modal-footer">
+                         <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">إلغاء</button>
+                         <button type="button" class="btn btn-delete" (click)="onClickOk.emit()" data-bs-dismiss="modal">حذف</button>
+                    </div>
+               </div>
+          </div>
+     </div>

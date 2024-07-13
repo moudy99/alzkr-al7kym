@@ -1,0 +1,37 @@
+<div
+  class="modal fade"
+  id="adminProfile"
+  tabindex="-1"
+  aria-labelledby="adminProfileLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="profile-img">
+        <img
+          src="../../../../assets/imgs/d71b5626cfc9a588008173a3727b731c.jpeg"
+          alt=""
+        />
+      </div>
+      <div class="content">
+        <div class="input">
+          <h5 class="modal-title text-end" id="adminProfileLabel">الاسم</h5>
+          <input [(ngModel)]="adminName" type="text" class="input-name" />
+        </div>
+        <div class="modal-footer-btns">
+          <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">
+            إلغاء
+          </button>
+          <button
+            type="button"
+            class="btn btn-delete"
+            data-bs-dismiss="modal"
+            (click)="onChangingName.emit(adminName)"
+          >
+            تعديل
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
